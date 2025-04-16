@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+
+{% block head_title %}Welcome to our instagram {% endblock %}
+
+{% block page_content %}
+
+  <h1>Home</h1>
+  <ul>
+    <li><a href="{% url 'game:login' %}">Login</a></li>
+    <li><a href="{% url 'game:singup' %}">Sing Up</a></li>
+    <li><a href="{% url 'game:play' %}">Sing Up</a></li>
+  </ul>
+  
+  {% endblock %}

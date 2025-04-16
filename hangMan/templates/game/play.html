@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+{% load crispy_forms_tags %}
+
+{% block page_content %}
+<div class="container mt-4">
+    <h2>Hangman Game</h2>
+
+    <p>Attempts: {{ attempts }} / {{ max_attempts }}</p>
+    <h3>{{ word_display|join:" " }}</h3>
+
+    {% if game_over %}
+        {% if won %}
+            <div class="alert alert-success">You won! 🎉</div>
+        {% else %}
+            <div class="alert alert-danger">Game Over. Try again!</div>
+        {% endif %}
+        <a href="{% url 'game:reset' %}" class="btn btn-primary">Play Again</a>
+    {% else %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-success mt-2">Guess</button>
+            <a href="{% url 'game:reset' %}" class="btn btn-primary">Reset word</a>
+        </form>
+    {% endif %}
+</div>
+{% endblock %}
