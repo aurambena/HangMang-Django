@@ -43,7 +43,7 @@ class LoginView(FormView):
         if user is not None:
             login(self.request, user)
             messages.add_message(self.request, messages.SUCCESS, f'Wellcome back {user.username}')
-            return HttpResponseRedirect(reverse('game:game'))
+            return HttpResponseRedirect(reverse('game:play'))
         else:
             messages.add_message(
                 self.request, messages.ERROR, ('User not registered or wrong password'))
@@ -60,6 +60,7 @@ from game.HangMan import (
     did_win
 )
 
+@login_required
 def play_game(request):
     # Start a new game if not started
     if "hangman_game" not in request.session:
@@ -85,6 +86,8 @@ def play_game(request):
         "max_attempts": game["max_attempts"],
         "game_over": is_game_over(game),
         "won": did_win(game),
+        "word": game["word"],
+        "guessed_letters": game["guessed_letters"],
     }
     return render(request, "game/play.html", context)
 
@@ -92,3 +95,10 @@ def reset_game(request):
     if "hangman_game" in request.session:
         del request.session["hangman_game"]
     return redirect("game:play")
+
+
+@login_required
+def logout_view(request):
+    logout(request)
+    messages.add_message(request, messages.INFO, "Logout successfully")
+    return HttpResponseRedirect(reverse('game:home'))

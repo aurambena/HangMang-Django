@@ -7,6 +7,7 @@ from .views import(
        LoginView,
        play_game,
        reset_game,
+       logout_view,
 )
 
 app_name= 'game'
@@ -16,5 +17,5 @@ urlpatterns = [
     path('login/', LoginView.as_view(), name='login'),  
     path("play/", views.play_game, name="play"),
     path("reset/", views.reset_game, name="reset"),
-
+    path("logout/", views.logout_view, name="logout"),
 ]

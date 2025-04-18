@@ -4,21 +4,50 @@
 {% block page_content %}
 <div class="container mt-4">
     <h2>Hangman Game</h2>
-
+    {% if attempts == 1 %}
+    <img src="/game/attemps/1.png" alt="1" width="200px">
+    {% elif attempts == 2 %}
+    <img src="/game/attemps/2.png" alt="1" width="200px">
+    {% elif attempts == 3 %}
+    <img src="/game/attemps/3.png" alt="1" width="200px">
+    {% elif attempts == 4 %}
+    <img src="/game/attemps/4.png" alt="1" width="200px">
+    {% elif attempts == 5 %}
+    <img src="/game/attemps/5.png" alt="1" width="200px">
+    {% elif attempts == 6 %}
+    <img src="/game/attemps/6.png" alt="1" width="200px">
+    {% elif attempts == 7 %}
+    <img src="/game/attemps/7.png" alt="1" width="200px">
+    {% elif attempts == 8 %}
+    <img src="/game/attemps/8.png" alt="1" width="200px">
+    {% elif attempts == 9 %}
+    <img src="/game/attemps/9.png" alt="1" width="200px">
+    {% elif attempts == 10 %}
+    <img src="/game/attemps/10.png" alt="1" width="200px">
+    {% elif attempts == 11 %}
+    <img src="/game/attemps/11.png" alt="1" width="200px">
+    {% elif attempts == 12 %}
+    <img src="/game/attemps/12.png" alt="1" width="200px">
+    {% endif %}
     <p>Attempts: {{ attempts }} / {{ max_attempts }}</p>
     <h3>{{ word_display|join:" " }}</h3>
+    <h2>{{ word }}</h2>
 
     {% if game_over %}
         {% if won %}
             <div class="alert alert-success">You won! 🎉</div>
         {% else %}
             <div class="alert alert-danger">Game Over. Try again!</div>
+            <div>The word was {{ word }}</div>
+            
         {% endif %}
         <a href="{% url 'game:reset' %}" class="btn btn-primary">Play Again</a>
     {% else %}
         <form method="post">
             {% csrf_token %}
             {{ form|crispy }}
+            <h3>Used letters:</h3>
+            <div>{{ guessed_letters|join:" " }}</div>
             <button type="submit" class="btn btn-success mt-2">Guess</button>
             <a href="{% url 'game:reset' %}" class="btn btn-primary">Reset word</a>
         </form>

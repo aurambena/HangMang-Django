@@ -1,5 +1,4 @@
 from django import forms
-from .models import UserGame, UserProfile
 from django.contrib.auth.models import User
 
 class AccountForm(forms.ModelForm):
@@ -35,5 +34,5 @@ class LetterForm(forms.Form):
     letter = forms.CharField(
         max_length=1,
         label='Guess a letter',
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'A-Z'})
+        widget=forms.TextInput(attrs={'class': 'form-control'})
     )
