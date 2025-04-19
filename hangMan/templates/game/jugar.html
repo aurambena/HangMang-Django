@@ -3,7 +3,7 @@
 
 {% block page_content %}
 <div class="container_game">
-    <h2 class="tittle">Hangman Game</h2>
+    <h1 class="tittle">Juego del ahorcado</h1>
     {% if attempts == 1 %}
     <img src="/game/attemps/1.png" alt="1" width="200px">
     {% elif attempts == 2 %}
@@ -29,27 +29,26 @@
     {% elif attempts == 12 %}
     <img src="/game/attemps/12.png" alt="1" width="200px">
     {% endif %}
-    <p class="attemps">Attempts: {{ attempts }} / {{ max_attempts }}</p>
+    <p  class="attemps">Attempts: {{ attempts }} / {{ max_attempts }}</p>
     <h2 class="word">{{ word_display|join:" " }}</h2>
     <!-- <h3>{{ word }}</h3> -->
 
     {% if game_over %}
         {% if won %}
-            <div class="alert alert-success">You won! 🎉</div>
+            <div class="alert alert-success">Ganaste! 🎉</div>
         {% else %}
-            <div class="alert alert-danger">Game Over. Try again!</div>
-            <div class="word-played">The word was {{ word }}</div>
-            
+            <div class="alert alert-danger">Perdiste. Volver a jugar!</div>
+            <div class="word-played">La palabra era: {{ word }}</div>
         {% endif %}
-        <a href="{% url 'game:reset' %}" class="btn btn-primary">Play Again</a>
+        <a href="{% url 'game:reiniciar' %}" class="btn btn-primary">Volver a jugar</a>
     {% else %}
         <form method="post">
             {% csrf_token %}
             {{ form|crispy }}
             <h3>Used letters:</h3>
             <div>{{ guessed_letters|join:" " }}</div>
-            <button type="submit" class="btn btn-guess">Guess</button>
-            <a href="{% url 'game:reset' %}" class="btn btn-secundary">Reset word</a>
+            <button type="submit" class="btn btn-guess">Adivina</button>
+            <a href="{% url 'game:reiniciar' %}" class="btn btn-secundary">Cambiar palabra</a>
         </form>
     {% endif %}
 </div>

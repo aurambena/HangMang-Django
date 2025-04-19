@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block head_title %}Welcome to our instagram {% endblock %}
+
+{% block page_content %}
+
+  <h1>Select language/selecciona el lenguaje</h1>
+  <ul>
+    {% if request.user.is_authenticated %}
+    <li><a href="{% url 'game:play' %}">Play</a></li>
+    <li><a href="{% url 'game:jugar' %}">Jugar</a></li>
+    {% endif %}
+  </ul>
+  
+  {% endblock %}

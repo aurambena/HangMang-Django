@@ -36,3 +36,10 @@ class LetterForm(forms.Form):
         label='Guess a letter',
         widget=forms.TextInput(attrs={'class': 'form-control'})
     )
+
+class FormLetra(forms.Form):
+    letra = forms.CharField(
+        max_length=1,
+        label='Adivina una letra',
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )

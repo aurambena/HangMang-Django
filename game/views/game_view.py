@@ -20,6 +20,14 @@ class HomeView(TemplateView):
         context = super().get_context_data(**kwargs)
 
         return context
+    
+class LanguageView(TemplateView):
+    template_name = "language.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        return context
 
 class RegisterView(CreateView):
       model = User
@@ -60,6 +68,7 @@ from game.HangMan import (
     did_win
 )
 
+#English
 @login_required
 def play_game(request):
     # Start a new game if not started
@@ -95,6 +104,58 @@ def reset_game(request):
     if "hangman_game" in request.session:
         del request.session["hangman_game"]
     return redirect("game:play")
+
+
+@login_required
+def logout_view(request):
+    logout(request)
+    messages.add_message(request, messages.INFO, "Logout successfully")
+    return HttpResponseRedirect(reverse('game:home'))
+
+#Español
+from game.forms import FormLetra
+from game.ahorcado import (
+    inicio,
+    verificar,
+    display_palabra,
+    fin_juego,
+    ganaste
+)
+@login_required
+def jugar(request):
+    # Start a new game if not started
+    if "ahorcado" not in request.session:
+        request.session["ahorcado"] = inicio()
+
+    game = request.session["ahorcado"]
+
+    if request.method == "POST":
+        form = FormLetra(request.POST)
+        if form.is_valid():
+            letra = form.cleaned_data["letra"].lower()
+            #updates the game state based on the guessed letter
+            game = verificar(game, letra)
+            request.session["ahorcado"] = game
+            return redirect("game:jugar")  # prevent form resubmission
+    else:
+        form = FormLetra()
+
+    context = {
+        "form": form,
+        "word_display": display_palabra(game),
+        "attempts": game["intentos"],
+        "max_attempts": game["max_intentos"],
+        "game_over": fin_juego(game),
+        "won": ganaste(game),
+        "word": game["palabra"],
+        "guessed_letters": game["letras_adivinadas"],
+    }
+    return render(request, "game/jugar.html", context)
+
+def reset_juego(request):
+    if "ahorcado" in request.session:
+        del request.session["ahorcado"]
+    return redirect("game:jugar")
 
 
 @login_required

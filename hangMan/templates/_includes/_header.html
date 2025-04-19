@@ -7,7 +7,7 @@
                 <li><a href="{% url 'game:singup' %}">Sing Up</a></li>
                 {% endif %}
                 {% if request.user.is_authenticated %}
-                <li><a href="{% url 'game:play' %}">Play</a></li>
+                <li><a href="{% url 'game:language' %}">language/lenguaje</a></li>
                 <li class="log"><a href="{% url 'game:logout' %}">Logout</a></li>
                 {% endif %}
               </ul>
