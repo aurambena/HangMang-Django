@@ -1,0 +1,45 @@
+.nav-language{
+    @include reset-list;
+      display: flex;
+      align-items: center;
+      ul{
+        @include set-navbar;
+        @include reset-list;
+        @include breakpoint(mobile){
+            gap: 120px;
+            margin-left: 30px;
+            li{
+                margin-left: 30px;
+            }
+        }
+        @include breakpoint(tablet){
+            gap: 200px;
+            margin-left: 100px;
+            li{
+                margin-left: 100px;
+            }
+        }
+        @include breakpoint(desktop){
+            gap: 400px;
+            margin-left: 100px;
+            li{
+                margin-left: 100px;
+            }
+        }
+
+        a{
+            color: $--secundary-color;
+            padding: 10px;
+            border-radius: 20px;
+            &:hover{
+              background-color:$--tertiary-color;
+          }
+        }
+        
+      }
+}
+
+.h1language{
+    text-align: center;
+    margin-bottom: 50px;
+}

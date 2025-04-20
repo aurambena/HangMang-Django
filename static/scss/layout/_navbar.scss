@@ -1,0 +1,46 @@
+
+header{
+    ul {
+      @include reset-list;
+      display: flex;
+      align-items: center;
+      @include set-navbar;
+          padding: 10px;
+          padding-left: 0;
+          @include breakpoint(mobile){
+              gap: 80px;
+          }
+          @include breakpoint(tablet){
+              gap: 270px;
+          }
+          @include breakpoint(desktop){
+              gap: 350px;
+          }
+      
+      li{
+          @include set-navbar;
+          @include breakpoint(mobile){
+              padding: 2px;
+          }
+          @include breakpoint(tablet){
+              padding: 5px;
+          }
+          @include breakpoint(desktop){
+              padding: 5px;
+          }
+        }   a{
+              color: $--secundary-color;
+              padding: 10px;
+              border-radius: 20px;
+              &:hover{
+                background-color:$--tertiary-color;
+            }
+            
+          }
+       
+          
+    }
+    
+
+}
+    

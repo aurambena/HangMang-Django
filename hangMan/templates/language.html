@@ -1,15 +1,18 @@
 {% extends 'layout.html' %}
 
-{% block head_title %}Welcome to our instagram {% endblock %}
+{% block head_title %}Welcome to this game {% endblock %}
 
 {% block page_content %}
 
-  <h1>Select language/selecciona el lenguaje</h1>
-  <ul>
-    {% if request.user.is_authenticated %}
-    <li><a href="{% url 'game:play' %}">Play</a></li>
-    <li><a href="{% url 'game:jugar' %}">Jugar</a></li>
-    {% endif %}
-  </ul>
+  <h1 class="h1language">Select language/selecciona el lenguaje</h1>
+  <nav class="nav-language">
+    <ul>
+      {% if request.user.is_authenticated %}
+      <li><a href="{% url 'game:play' %}">English</a></li>
+      <li><a href="{% url 'game:jugar' %}">Español</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+  
   
   {% endblock %}

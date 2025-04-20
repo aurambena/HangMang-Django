@@ -1,16 +1,20 @@
 <header>
     <section>
         <div class="container">
-            <ul>
-                {% if not request.user.is_authenticated %}
-                <li><a href="{% url 'game:login' %}">Login</a></li>
-                <li><a href="{% url 'game:singup' %}">Sing Up</a></li>
-                {% endif %}
-                {% if request.user.is_authenticated %}
-                <li><a href="{% url 'game:language' %}">language/lenguaje</a></li>
-                <li class="log"><a href="{% url 'game:logout' %}">Logout</a></li>
-                {% endif %}
-              </ul>
+            <nav>
+                <ul class="nav-ul">
+                    <li><a href="{% url 'game:home' %}">Home</a></li>
+                    {% if not request.user.is_authenticated %}
+                    <li><a href="{% url 'game:login' %}">Login</a></li>
+                    <li><a href="{% url 'game:singup' %}">Sing Up</a></li>
+                    {% endif %}
+                    {% if request.user.is_authenticated %}
+                    <li><a href="{% url 'game:language' %}">Play</a></li>
+                    <li class="log"><a href="{% url 'game:logout' %}">Logout</a></li>
+                    {% endif %}
+                  </ul>
+            </nav>
+            
         </div>
     </section>
 </header>

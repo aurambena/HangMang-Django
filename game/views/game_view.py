@@ -51,7 +51,7 @@ class LoginView(FormView):
         if user is not None:
             login(self.request, user)
             messages.add_message(self.request, messages.SUCCESS, f'Wellcome back {user.username}')
-            return HttpResponseRedirect(reverse('game:play'))
+            return HttpResponseRedirect(reverse('game:language'))
         else:
             messages.add_message(
                 self.request, messages.ERROR, ('User not registered or wrong password'))
