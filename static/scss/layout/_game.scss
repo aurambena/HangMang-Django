@@ -1,0 +1,23 @@
+.container_game{
+    text-align: center;
+    
+}
+.title{
+    background-color: $--secundary-color;
+    color: $--primary-color; 
+    text-align: center;
+    margin-bottom: 25px;
+}
+    
+
+.form-control{
+    display:inline-flex;
+    width: 25%;
+}
+
+.form-label{
+    display: block;
+}
+
+
+

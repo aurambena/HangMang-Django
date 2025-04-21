@@ -4,8 +4,8 @@
 /*font-size mobile*/
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&display=swap");
 body {
-  background-color: #0c2b08;
-  color: #c2e42d;
+  background-color: #ffcd71;
+  color: #76271b;
   max-width: 100%;
   font-family: "Poppins", sans-serif; }
 
@@ -13,19 +13,25 @@ body {
   .container {
     padding: 0;
     max-width: 90%;
-    margin: 10px; } }
+    margin: 10px;
+    margin-top: 0px;
+    margin-bottom: 0px; } }
 
 @media (min-width: 768px) {
   .container {
     padding: 0;
     max-width: 90%;
-    margin: 40px; } }
+    margin: 40px;
+    margin-top: 0px;
+    margin-bottom: 0px; } }
 
 @media (min-width: 1200px) {
   .container {
     padding: 0;
     max-width: 90%;
-    margin: 50px; } }
+    margin: 50px;
+    margin-top: 0px;
+    margin-bottom: 0px; } }
 
 @media (min-width: 375px) {
   header {
@@ -79,6 +85,9 @@ header ul {
   @media (min-width: 768px) {
     header ul {
       gap: 270px; } }
+  @media (min-width: 1024px) {
+    header ul {
+      gap: 330px; } }
   @media (min-width: 1200px) {
     header ul {
       gap: 350px; } }
@@ -95,104 +104,11 @@ header ul {
       header ul li {
         padding: 5px; } }
   header ul a {
-    color: #c2e42d;
+    color: #76271b;
     padding: 10px;
     border-radius: 20px; }
     header ul a:hover {
-      background-color: #faff00; }
-
-@media (min-width: 375px) {
-  h1.h1home {
-    text-align: left;
-    font-size: 20px; } }
-
-@media (min-width: 768px) {
-  h1.h1home {
-    font-size: 40px;
-    text-align: center; } }
-
-@media (min-width: 1200px) {
-  h1.h1home {
-    font-size: 40px;
-    text-align: center; } }
-
-@media (min-width: 375px) {
-  .collage {
-    margin-left: 0px;
-    margin-top: 30px; }
-    .collage img:first-child {
-      transform: rotate(20deg);
-      margin: 10px;
-      border-color: white;
-      border-width: 5px;
-      border-style: dashed;
-      width: 80px; }
-    .collage img:nth-child(2) {
-      transform: rotate(-20deg);
-      margin: 10px;
-      border-color: white;
-      border-width: 5px;
-      border-style: solid;
-      width: 80px; }
-    .collage img:nth-child(3) {
-      transform: rotate(20deg);
-      margin: 10px;
-      border-color: white;
-      border-width: 5px;
-      border-style: dotted;
-      width: 80px; } }
-
-@media (min-width: 768px) {
-  .collage {
-    margin-left: 80px;
-    margin-top: 30px; }
-    .collage img:first-child {
-      transform: rotate(20deg);
-      margin: 20px;
-      border-color: white;
-      border-width: 5px;
-      border-style: dashed;
-      width: 120px; }
-    .collage img:nth-child(2) {
-      transform: rotate(-20deg);
-      margin: 20px;
-      border-color: white;
-      border-width: 5px;
-      border-style: solid;
-      width: 120px; }
-    .collage img:nth-child(3) {
-      transform: rotate(20deg);
-      margin: 20px;
-      border-color: white;
-      border-width: 5px;
-      border-style: dotted;
-      width: 120px; } }
-
-@media (min-width: 1200px) {
-  .collage {
-    margin-left: 180px;
-    margin-top: 30px; }
-    .collage img:first-child {
-      transform: rotate(20deg);
-      margin: 20px;
-      border-color: white;
-      border-width: 5px;
-      border-style: dashed;
-      width: 200px; }
-    .collage img:nth-child(2) {
-      transform: rotate(-20deg);
-      margin: 20px;
-      border-color: white;
-      border-width: 5px;
-      border-style: solid;
-      width: 200px; }
-    .collage img:nth-child(3) {
-      transform: rotate(20deg);
-      margin: 20px;
-      border-color: white;
-      border-width: 5px;
-      border-style: dotted;
-      width: 200px; } }
+      background-color: #ff8c52; }
 
 @media (min-width: 375px) {
   div.container-footer {
@@ -206,17 +122,21 @@ header ul {
   div.container-footer {
     margin-left: 50px; } }
 
-@media (min-width: 375px) {
-  span.material-symbols-outlined {
-    font-size: 15px; } }
+.container_game {
+  text-align: center; }
 
-@media (min-width: 768px) {
-  span.material-symbols-outlined {
-    font-size: 25px; } }
+.title {
+  background-color: #76271b;
+  color: #ffcd71;
+  text-align: center;
+  margin-bottom: 25px; }
 
-@media (min-width: 1200px) {
-  span.material-symbols-outlined {
-    font-size: 35px; } }
+.form-control {
+  display: inline-flex;
+  width: 25%; }
+
+.form-label {
+  display: block; }
 
 @media (min-width: 375px) {
   form.login {
@@ -234,8 +154,8 @@ h1.h1login {
   text-align: center; }
 
 .home-posts {
-  background-color: #c2e42d;
-  color: #0c2b08;
+  background-color: #76271b;
+  color: #ffcd71;
   text-align: center; }
 
 .wellcome {
@@ -272,11 +192,11 @@ h1.h1login {
         .nav-language ul li {
           margin-left: 100px; } }
     .nav-language ul a {
-      color: #c2e42d;
+      color: #76271b;
       padding: 10px;
       border-radius: 20px; }
       .nav-language ul a:hover {
-        background-color: #faff00; }
+        background-color: #ff8c52; }
 
 .h1language {
   text-align: center;
@@ -287,22 +207,41 @@ h1.h1login {
   margin: 0;
   box-sizing: border-box; }
 
-.likeButton {
-  list-style: none;
-  text-decoration: none; }
-  .likeButton a {
-    color: #0c2b08; }
-
-.postbutton {
+.buttons {
   margin: 0;
   padding: 0;
   list-style: none;
-  color: #0c2b08;
-  border-radius: 10px;
+  margin-top: 25px;
+  display: inline-flex;
+  gap: 10%;
+  text-align: center; }
+
+.btn-guess {
+  color: #76271b;
   padding: 10px;
-  background-color: #c2e42d;
-  text-align: right; }
-  .postbutton:hover {
-    background-color: #faff00; }
+  border-radius: 20px;
+  background-color: #cd5b32; }
+  .btn-guess:hover {
+    background-color: #ff8c52; }
+
+.btn-secundary {
+  color: #76271b;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: #cd5b32; }
+  .btn-secundary:hover {
+    background-color: #ff8c52; }
+
+.back-button {
+  color: #76271b;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: #cd5b32; }
+  .back-button:hover {
+    background-color: #ff8c52; }
+
+.mode {
+  text-align: left;
+  margin-top: 25px; }
 
 /*# sourceMappingURL=style.css.map */

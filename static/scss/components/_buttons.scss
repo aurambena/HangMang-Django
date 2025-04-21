@@ -1,23 +1,48 @@
-.likeButton{
-    @include likebutton;
-    a{
-      color: $--primary-color;
-    }
-  }
-
-//   a.bi bi-suit-heart-fill{
-    
-    
-// }
-
-  .postbutton{
+.buttons{
     @include reset-button;
-    color: $--primary-color;
-    border-radius: 10px;
+    margin-top: 25px;
+    display: inline-flex;
+    gap: 10%;
+    text-align: center;
+    
+}
+
+.btn-guess{
+    color: $--secundary-color;
     padding: 10px;
-    background-color: $--secundary-color;
-    text-align:right;
+    border-radius: 20px;
+    background-color: #cd5b32;
+    
     &:hover{
         background-color:$--tertiary-color;
     }
+}
+
+.btn-secundary{
+  color: $--secundary-color;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: #cd5b32;
+
+  &:hover{
+      background-color:$--tertiary-color;
+  }
+}
+
+.back-button{
+  color: $--secundary-color;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: #cd5b32;
+ 
+  
+  &:hover{
+      background-color:$--tertiary-color;
+  }
+
+}
+
+.mode{
+  text-align: left;
+  margin-top: 25px;
 }

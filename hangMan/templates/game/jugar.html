@@ -3,7 +3,8 @@
 
 {% block page_content %}
 <div class="container_game">
-    <h1 class="tittle">Juego del ahorcado</h1>
+    <h1 class="title">Hangman Game</h1>
+    <p class="mode">Modo español <a class="back-button" href="{% url 'game:language' %}">Regresar a lenguaje</a></p>
     {% if attempts == 1 %}
     <img src="/game/attemps/1.png" alt="1" width="200px">
     {% elif attempts == 2 %}
@@ -29,9 +30,8 @@
     {% elif attempts == 12 %}
     <img src="/game/attemps/12.png" alt="1" width="200px">
     {% endif %}
-    <p  class="attemps">Attempts: {{ attempts }} / {{ max_attempts }}</p>
-    <h2 class="word">{{ word_display|join:" " }}</h2>
-    <!-- <h3>{{ word }}</h3> -->
+    <p  class="attemps">Intentos: {{ attempts }} / {{ max_attempts }}</p>
+    <h3 class="word">{{ word_display|join:" " }}</h3>
 
     {% if game_over %}
         {% if won %}
@@ -45,10 +45,12 @@
         <form method="post">
             {% csrf_token %}
             {{ form|crispy }}
-            <h3>Letras utilizadas:</h3>
+            <h4>Letras utilizadas:</h4>
             <div>{{ guessed_letters|join:" " }}</div>
-            <button type="submit" class="btn btn-guess">Adivina</button>
-            <a href="{% url 'game:reiniciar' %}" class="btn btn-secundary">Cambiar palabra</a>
+            <div class="buttons">
+                <button type="submit" class="btn btn-guess">Adivina</button>
+                <a href="{% url 'game:reiniciar' %}" class="btn btn-secundary">Cambiar</a>
+            </div>  
         </form>
     {% endif %}
 </div>

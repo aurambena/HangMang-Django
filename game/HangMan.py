@@ -12,7 +12,8 @@ def start_new_game():
         "word": word,
         "guessed_letters": [],
         "attempts": 0,
-        "max_attempts": 12
+        "max_attempts": 12,
+        "victories": 0
     }
 
 def process_guess(game_state, letter):
@@ -42,3 +43,4 @@ def is_game_over(game_state):
 
 def did_win(game_state):
     return all(l in game_state["guessed_letters"] for l in game_state["word"])
+

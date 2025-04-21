@@ -112,6 +112,15 @@ def logout_view(request):
     messages.add_message(request, messages.INFO, "Logout successfully")
     return HttpResponseRedirect(reverse('game:home'))
 
+def stats(request):
+    game = request.session["hangman_game"]
+    if did_win(game):
+       victories = victories +1
+    return {
+        "victories": victories
+    }
+
+
 #Español
 from game.forms import FormLetra
 from game.ahorcado import (

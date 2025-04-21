@@ -13,6 +13,9 @@ header{
           @include breakpoint(tablet){
               gap: 270px;
           }
+          @include breakpoint(tablethorizontal){
+              gap: 330px;
+          }
           @include breakpoint(desktop){
               gap: 350px;
           }
