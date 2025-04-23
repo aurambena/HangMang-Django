@@ -123,7 +123,10 @@ header ul {
     margin-left: 50px; } }
 
 .container_game {
-  text-align: center; }
+  text-align: center;
+  display: grid;
+  grid-template-columns: 60% 30%;
+  gap: 10%; }
 
 .title {
   background-color: #76271b;
@@ -133,10 +136,13 @@ header ul {
 
 .form-control {
   display: inline-flex;
-  width: 25%; }
+  width: 50%; }
 
 .form-label {
   display: block; }
+
+.mode {
+  margin-bottom: 30px; }
 
 @media (min-width: 375px) {
   form.login {

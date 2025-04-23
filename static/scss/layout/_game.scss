@@ -1,6 +1,8 @@
 .container_game{
     text-align: center;
-    
+    display: grid;
+    grid-template-columns: 60% 30%;
+    gap: 10%
 }
 .title{
     background-color: $--secundary-color;
@@ -9,14 +11,17 @@
     margin-bottom: 25px;
 }
     
-
 .form-control{
     display:inline-flex;
-    width: 25%;
+    width: 50%;
 }
 
 .form-label{
     display: block;
+}
+
+.mode{
+    margin-bottom: 30px;
 }
 
 

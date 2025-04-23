@@ -65,7 +65,9 @@ from game.HangMan import (
     process_guess,
     get_display_word,
     is_game_over,
-    did_win
+    did_win,
+    stats,
+    
 )
 
 #English
@@ -74,9 +76,14 @@ def play_game(request):
     # Start a new game if not started
     if "hangman_game" not in request.session:
         request.session["hangman_game"] = start_new_game()
-
+        
     game = request.session["hangman_game"]
-
+    
+    if "player_stats" not in request.session:
+        request.session["player_stats"] = stats()
+        
+    count = request.session["player_stats"]
+    
     if request.method == "POST":
         form = LetterForm(request.POST)
         if form.is_valid():
@@ -87,17 +94,20 @@ def play_game(request):
             return redirect("game:play")  # prevent form resubmission
     else:
         form = LetterForm()
-
     context = {
         "form": form,
         "word_display": get_display_word(game),
         "attempts": game["attempts"],
         "max_attempts": game["max_attempts"],
-        "game_over": is_game_over(game),
-        "won": did_win(game),
+        "game_over": is_game_over(game, count),
+        "won": did_win(game, count),
         "word": game["word"],
         "guessed_letters": game["guessed_letters"],
+        "victories": count["victories"],
+        "games_played": count["games_played"]
+        
     }
+
     return render(request, "game/play.html", context)
 
 def reset_game(request):
@@ -105,21 +115,11 @@ def reset_game(request):
         del request.session["hangman_game"]
     return redirect("game:play")
 
-
 @login_required
 def logout_view(request):
     logout(request)
     messages.add_message(request, messages.INFO, "Logout successfully")
     return HttpResponseRedirect(reverse('game:home'))
-
-def stats(request):
-    game = request.session["hangman_game"]
-    if did_win(game):
-       victories = victories +1
-    return {
-        "victories": victories
-    }
-
 
 #Español
 from game.forms import FormLetra

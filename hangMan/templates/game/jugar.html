@@ -2,9 +2,11 @@
 {% load crispy_forms_tags %}
 
 {% block page_content %}
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<p class="mode">Modo español <a class="back-button" href="{% url 'game:language' %}">Regresar a lenguaje</a></p>
 <div class="container_game">
+    <section class="game">
     <h1 class="title">Hangman Game</h1>
-    <p class="mode">Modo español <a class="back-button" href="{% url 'game:language' %}">Regresar a lenguaje</a></p>
     {% if attempts == 1 %}
     <img src="/game/attemps/1.png" alt="1" width="200px">
     {% elif attempts == 2 %}
@@ -32,10 +34,15 @@
     {% endif %}
     <p  class="attemps">Intentos: {{ attempts }} / {{ max_attempts }}</p>
     <h3 class="word">{{ word_display|join:" " }}</h3>
-
     {% if game_over %}
         {% if won %}
-            <div class="alert alert-success">Ganaste! 🎉</div>
+        <script>
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+        </script>
         {% else %}
             <div class="alert alert-danger">Perdiste. Volver a jugar!</div>
             <div class="word-played">La palabra era: {{ word }}</div>
@@ -45,13 +52,19 @@
         <form method="post">
             {% csrf_token %}
             {{ form|crispy }}
-            <h4>Letras utilizadas:</h4>
-            <div>{{ guessed_letters|join:" " }}</div>
+            <h4>Letras utilizadas: {{ guessed_letters|join:" " }}</h4>
             <div class="buttons">
                 <button type="submit" class="btn btn-guess">Adivina</button>
                 <a href="{% url 'game:reiniciar' %}" class="btn btn-secundary">Cambiar</a>
             </div>  
         </form>
+    </section>
+    <section class="stats">
+        <h1 class="title">Datos</h1>
+        <h2>Usuario: {{ request.user }}</h2>
+        <p>Games: {{games_played}}</p>
+        <p>Victories: {{victories}}</p>  
+    </section>
     {% endif %}
 </div>
 {% endblock %}

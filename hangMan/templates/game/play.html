@@ -2,10 +2,12 @@
 {% load crispy_forms_tags %}
 
 {% block page_content %}
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<p class="mode">English mode <a class="back-button" href="{% url 'game:language' %}">Back to language</a></p>
 <div class="container_game">
+    <section class="game">
     <h1 class="title">Hangman Game</h1>
-    <p class="mode">English mode <a class="back-button" href="{% url 'game:language' %}">Back to language</a></p>
-        
     {% if attempts == 1 %}
     <img src="/game/attemps/1.png" alt="1" width="200px">
     {% elif attempts == 2 %}
@@ -31,31 +33,42 @@
     {% elif attempts == 12 %}
     <img src="/game/attemps/12.png" alt="1" width="200px">
     {% endif %}
-    <p class="attemps">Attempts: {{ attempts }} / {{ max_attempts }}</p>
-    <h3 class="word">{{ word_display|join:" " }}</h3>
-    <p>{{word}}</p>
-
-    {% if game_over %}
-        {% if won %}
-            <div class="alert alert-success">You won! 🎉</div>
+        <p class="attemps">Attempts: {{ attempts }} / {{ max_attempts }}</p>
+        <h3 class="word">{{ word_display|join:" " }}</h3>
+        <p>{{word}}</p>
+        {% if game_over %}
+            {% if won %}
+            <script>
+                confetti({
+                    particleCount: 150,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+            </script>
+            {% else %}
+                <div class="alert alert-danger">Game Over. Try again!</div>
+                <div class="word-played">The word was {{ word }}</div>
+            {% endif %}
+            <a href="{% url 'game:reset' %}" class="btn btn-primary">Play Again</a>
         {% else %}
-            <div class="alert alert-danger">Game Over. Try again!</div>
-            <div class="word-played">The word was {{ word }}</div>
-            
-        {% endif %}
-        <a href="{% url 'game:reset' %}" class="btn btn-primary">Play Again</a>
-    {% else %}
-        <form method="post">
-            {% csrf_token %}
-            {{ form|crispy }}
-            <h4>Used letters:</h4>
-            <div>{{ guessed_letters|join:" " }}</div>
-            <div class="buttons">
-                <button type="submit" class="btn btn-guess">Guess</button>
-                <a href="{% url 'game:reset' %}" class="btn btn-secundary">Reset</a>
-            </div>
-            
-        </form>
+            <form method="post">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <h4>Used letters: {{ guessed_letters|join:" " }}</h4>            
+                <div class="buttons">
+                    <button type="submit" class="btn btn-guess">Guess</button>
+                    <a href="{% url 'game:reset' %}" class="btn btn-secundary">Reset</a>
+                </div>            
+            </form>
+    </section>
+    
+        <section class="stats">
+            <h1 class="title">Stats </h1>
+            <h2>User: {{ request.user }}</h2>
+            <p>Games: {{games_played}}</p>
+            <p>Victories: {{victories}}</p>  
+        </section>
+    </div>
     {% endif %}
 </div>
 {% endblock %}
