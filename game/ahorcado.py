@@ -36,9 +36,15 @@ def display_palabra(estado_juego):
     
     return display
    
-def fin_juego(estado_juego):
+def fin_juego(estado_juego, estadisticas_jugador):
     palabra = estado_juego["palabra"]
     return estado_juego["intentos"] >= estado_juego["max_intentos"] or all(l in estado_juego["letras_adivinadas"] for l in palabra)
 
 def ganaste(estado_juego):
     return all(l in estado_juego["letras_adivinadas"] for l in estado_juego["palabra"])
+
+def estadisticas():
+    return {
+        "victorias": 0,
+        "juegos_jugados": 0
+    }

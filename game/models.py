@@ -3,21 +3,15 @@ from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 # Create your models here.
-    
-class UserGame(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='user_game', verbose_name='user')
-    nickname = models.CharField(max_length=10, blank=True)
-    age = models.IntegerField(
-        validators=[MinValueValidator(0), MaxValueValidator(99)],
-        blank=True,
-        null=True
-    )
-    
-    # Sets how names will appear in the admin
+       
+class PlayerStats(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    victories = models.IntegerField(default=0)
+    games_played = models.IntegerField(default=0)
+
     class Meta:
-        verbose_name = 'User'
-        verbose_name_plural = 'Users'
+        verbose_name = 'Player Stat'
+        verbose_name_plural = 'Player Stats'
 
     def __str__(self):
-        return self.user.username
-    
+        return f"{self.user.username} - Wins: {self.victories}, Games: {self.games_played}"

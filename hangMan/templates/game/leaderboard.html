@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block head_title %}Welcome to the game{% endblock %}
+
+{% block page_content %}
+
+  <h1 class="title">Leaderboard</h1>
+  <section>
+    {% for players in stats%}
+        <p>User: {{players.user.username}}</p>
+        <p>Victories: {{players.victories}}</p>
+        <p>Games played: {{ players.games_played }}</p>
+    {% empty %}
+        <p>No stats available</p>
+    {% endfor %}
+  </section>
+
+
+  
+  
+  {% endblock %}

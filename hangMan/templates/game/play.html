@@ -40,7 +40,7 @@
             {% if won %}
             <script>
                 confetti({
-                    particleCount: 150,
+                    particleCount: 200,
                     spread: 70,
                     origin: { y: 0.6 }
                 });
@@ -51,7 +51,7 @@
             {% endif %}
             <a href="{% url 'game:reset' %}" class="btn btn-primary">Play Again</a>
         {% else %}
-            <form method="post">
+            <form method="post" autocomplete="off">
                 {% csrf_token %}
                 {{ form|crispy }}
                 <h4>Used letters: {{ guessed_letters|join:" " }}</h4>            

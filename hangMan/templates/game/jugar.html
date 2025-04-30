@@ -6,36 +6,37 @@
 <p class="mode">Modo español <a class="back-button" href="{% url 'game:language' %}">Regresar a lenguaje</a></p>
 <div class="container_game">
     <section class="game">
-    <h1 class="title">Hangman Game</h1>
-    {% if attempts == 1 %}
+    <h1 class="title">Ahorcado</h1>
+    {% if intentos == 1 %}
     <img src="/game/attemps/1.png" alt="1" width="200px">
-    {% elif attempts == 2 %}
+    {% elif intentos == 2 %}
     <img src="/game/attemps/2.png" alt="1" width="200px">
-    {% elif attempts == 3 %}
+    {% elif intentos == 3 %}
     <img src="/game/attemps/3.png" alt="1" width="200px">
-    {% elif attempts == 4 %}
+    {% elif intentos == 4 %}
     <img src="/game/attemps/4.png" alt="1" width="200px">
-    {% elif attempts == 5 %}
+    {% elif intentos == 5 %}
     <img src="/game/attemps/5.png" alt="1" width="200px">
-    {% elif attempts == 6 %}
+    {% elif intentos == 6 %}
     <img src="/game/attemps/6.png" alt="1" width="200px">
-    {% elif attempts == 7 %}
+    {% elif intentos == 7 %}
     <img src="/game/attemps/7.png" alt="1" width="200px">
-    {% elif attempts == 8 %}
+    {% elif intentos == 8 %}
     <img src="/game/attemps/8.png" alt="1" width="200px">
-    {% elif attempts == 9 %}
+    {% elif intentos == 9 %}
     <img src="/game/attemps/9.png" alt="1" width="200px">
-    {% elif attempts == 10 %}
+    {% elif intentos == 10 %}
     <img src="/game/attemps/10.png" alt="1" width="200px">
-    {% elif attempts == 11 %}
+    {% elif intentos == 11 %}
     <img src="/game/attemps/11.png" alt="1" width="200px">
-    {% elif attempts == 12 %}
+    {% elif intentos == 12 %}
     <img src="/game/attemps/12.png" alt="1" width="200px">
     {% endif %}
-    <p  class="attemps">Intentos: {{ attempts }} / {{ max_attempts }}</p>
-    <h3 class="word">{{ word_display|join:" " }}</h3>
-    {% if game_over %}
-        {% if won %}
+    <p  class="attemps">Intentos: {{ intentos }} / {{ max_intentos }}</p>
+    <h3 class="word">{{ mostrar_palabra|join:" " }}</h3>
+    <p>{{ palabra }}</p>
+    {% if fin_juego %}
+        {% if gano %}
         <script>
             confetti({
                 particleCount: 150,
@@ -45,14 +46,14 @@
         </script>
         {% else %}
             <div class="alert alert-danger">Perdiste. Volver a jugar!</div>
-            <div class="word-played">La palabra era: {{ word }}</div>
+            <div class="word-played">La palabra era: {{ palabra }}</div>
         {% endif %}
         <a href="{% url 'game:reiniciar' %}" class="btn btn-primary">Volver a jugar</a>
     {% else %}
-        <form method="post">
+        <form method="post" autocomplete="off">
             {% csrf_token %}
-            {{ form|crispy }}
-            <h4>Letras utilizadas: {{ guessed_letters|join:" " }}</h4>
+            {{ formulario|crispy }}
+            <h4>Letras utilizadas: {{ letras_adivinadas|join:" " }}</h4>
             <div class="buttons">
                 <button type="submit" class="btn btn-guess">Adivina</button>
                 <a href="{% url 'game:reiniciar' %}" class="btn btn-secundary">Cambiar</a>
@@ -62,8 +63,8 @@
     <section class="stats">
         <h1 class="title">Datos</h1>
         <h2>Usuario: {{ request.user }}</h2>
-        <p>Games: {{games_played}}</p>
-        <p>Victories: {{victories}}</p>  
+        <p>Games: {{juegos_jugados}}</p>
+        <p>Victories: {{ victorias }}</p>  
     </section>
     {% endif %}
 </div>
