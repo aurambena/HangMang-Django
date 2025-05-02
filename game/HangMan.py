@@ -45,14 +45,3 @@ def is_game_over(game_state, stats_player):
 def did_win(game_state):
     word = game_state["word"]
     return all(l in game_state["guessed_letters"] for l in game_state["word"])
-
-
-# def stats():
-#     return {
-#         "victories": 0,
-#         "games_played": 0
-#     }
-
-
-
-

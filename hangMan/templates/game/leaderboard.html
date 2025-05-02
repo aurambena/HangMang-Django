@@ -1,21 +1,35 @@
 {% extends 'layout.html' %}
-
+{% load crispy_forms_tags %}
 {% block head_title %}Welcome to the game{% endblock %}
 
 {% block page_content %}
 
   <h1 class="title">Leaderboard</h1>
-  <section>
-    {% for players in stats%}
+  <section class="leader">
+    <div>
+      <h2 class="title-stats">Stats</h2>
+      {% for players in stats%}
+      <div class="leaderboard-stats">
         <p>User: {{players.user.username}}</p>
         <p>Victories: {{players.victories}}</p>
         <p>Games played: {{ players.games_played }}</p>
-    {% empty %}
+      </div>
+        
+      {% empty %}
         <p>No stats available</p>
-    {% endfor %}
+      {% endfor %}
+    </div>
+    <div >
+      <h2 class="title-stats">Estadisticas</h2>
+      {% for jugadores in estadisticas%}
+      <div class="leaderboard-stats">
+        <p>Usuario: {{jugadores.user.username}}</p>
+        <p>Victorias: {{jugadores.victorias}}</p>
+        <p>Juegos jugados: {{ jugadores.juegos_jugados }}</p>
+      </div>
+      {% empty %}
+        <p>Estadisticas no disponibles</p>
+      {% endfor %}
+    </div>
   </section>
-
-
-  
-  
   {% endblock %}

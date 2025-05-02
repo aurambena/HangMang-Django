@@ -67,8 +67,6 @@ from game.HangMan import (
     get_display_word,
     is_game_over,
     did_win,
-    
-    
 )
 
 #English
@@ -79,7 +77,6 @@ def play_game(request):
         
     game = request.session["hangman_game"]
 
-    # Get or create PlayerStats from DB
     player_stats, created = PlayerStats.objects.get_or_create(user=request.user)
 
     if request.method == "POST":
@@ -113,52 +110,6 @@ def play_game(request):
     }
 
     return render(request, "game/play.html", context)
-# def play_game(request):
-#     # Start a new game if not started
-#     if "hangman_game" not in request.session:
-#         request.session["hangman_game"] = start_new_game()
-        
-#     game = request.session["hangman_game"]
-    
-    
-#     if "player_stats" not in request.session:
-#         request.session["player_stats"] = stats()
-        
-#     count = request.session["player_stats"]
-
-#     if request.method == "POST":
-#         form = LetterForm(request.POST)
-#         if form.is_valid():
-#             letter = form.cleaned_data["letter"].lower()
-#             #updates the game state based on the guessed letter
-#             game = process_guess(game, letter)
-#             if is_game_over(game, count):
-#                 count["games_played"] += 1
-#             if did_win(game):
-#                 count["victories"] += 1
-#             stats.save()
-#             request.session["player_stats"] = count
-#             request.session["hangman_game"] = game
-#             return redirect("game:play")  
-#     else:
-#         form = LetterForm()
-
-#     context = {
-#         "form": form,
-#         "word_display": get_display_word(game),
-#         "attempts": game["attempts"],
-#         "max_attempts": game["max_attempts"],
-#         "game_over": is_game_over(game, count),
-#         "won": did_win(game),
-#         "word": game["word"],
-#         "guessed_letters": game["guessed_letters"],
-#         "victories": count["victories"],
-#         "games_played": count["games_played"],
-        
-#     }
-    
-#     # import ipdb; ipdb.set_trace()
-#     return render(request, "game/play.html", context)
 
 def reset_game(request):
     if "hangman_game" in request.session:
@@ -173,13 +124,14 @@ def logout_view(request):
 
 #Español
 from game.forms import FormLetra
+from game.models import EstadisticasJugador
+
 from game.ahorcado import (
     inicio,
     verificar,
     display_palabra,
     fin_juego,
-    ganaste,
-    estadisticas,
+    ganaste,    
     
 )
 @login_required
@@ -190,23 +142,21 @@ def jugar(request):
 
     juego = request.session["ahorcado"]
 
-    if "estadisticas_jugador" not in request.session:
-        request.session["estadisticas_jugador"] = estadisticas()
-
-    contar = request.session["estadisticas_jugador"]
+    estadisticas_jugador, create = EstadisticasJugador.objects.get_or_create(user=request.user)
 
     if request.method == "POST":
         form = FormLetra(request.POST)
         if form.is_valid():
             letra = form.cleaned_data["letra"].lower()
-            #updates the game state based on the guessed letter
             juego = verificar(juego, letra)
-            if fin_juego(juego, contar):
-                contar["juegos_jugados"] += 1
-            if ganaste(juego):
-                contar["victorias"] += 1
+            if fin_juego(juego, estadisticas_jugador):
+                estadisticas_jugador.juegos_jugados += 1
+                if ganaste(juego):
+                    estadisticas_jugador.victorias += 1
+                estadisticas_jugador.save()
+            
             request.session["ahorcado"] = juego
-            return redirect("game:jugar")  # prevent form resubmission
+            return redirect("game:jugar")  
     else:
         form = FormLetra()
 
@@ -215,14 +165,13 @@ def jugar(request):
         "mostrar_palabra": display_palabra(juego),
         "intentos": juego["intentos"],
         "max_intentos": juego["max_intentos"],
-        "fin_juego": fin_juego(juego, contar),
+        "fin_juego": fin_juego(juego, estadisticas_jugador),
         "gano": ganaste(juego),
         "palabra": juego["palabra"],
         "letras_adivinadas": juego["letras_adivinadas"],
-        "victorias": contar["victorias"],
-        "juegos_jugados": contar["juegos_jugados"]
+        "victorias": estadisticas_jugador.victorias,
+        "juegos_jugados": estadisticas_jugador.juegos_jugados
     }
-    # import ipdb; ipdb.set_trace()
     return render(request, "game/jugar.html", context)
 
 def reset_juego(request):

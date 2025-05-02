@@ -43,8 +43,3 @@ def fin_juego(estado_juego, estadisticas_jugador):
 def ganaste(estado_juego):
     return all(l in estado_juego["letras_adivinadas"] for l in estado_juego["palabra"])
 
-def estadisticas():
-    return {
-        "victorias": 0,
-        "juegos_jugados": 0
-    }

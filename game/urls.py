@@ -11,7 +11,7 @@ from .views import(
        jugar,
        LanguageView,
        reset_juego,
-       leaderboard_view
+       leaderboard_view,
        
 )
 
@@ -27,4 +27,5 @@ urlpatterns = [
     path("reiniciar/", views.reset_juego, name="reiniciar"),
     path("logout/", views.logout_view, name="logout"),
     path("leaderboard/", views.leaderboard_view, name="leaderboard"),
+
 ]

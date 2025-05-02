@@ -19,8 +19,8 @@ class AccountForm(forms.ModelForm):
         user.set_password(self.cleaned_data["password"])
         user.save()
 
-        from .models import UserProfile
-        UserProfile.objects.create(user=user)
+        # from .models import UserProfile
+        User.objects.create(user=user)
 
         return user
     

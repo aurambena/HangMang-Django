@@ -5,7 +5,16 @@
 {% block page_content %}
 
   <h1 class="title">Hangman Game</h1>
-
-  
-  
+  <section class="main-buttons">
+    <div>
+      <a class="play" href="{% url 'game:play' %}">Play</a>
+    </div>
+    <div >
+      <a class="play" href="{% url 'game:jugar' %}">Jugar</a>
+    </div>
+    <div >
+      <a class="leaderboard" href="{% url 'game:leaderboard' %}">Leaderboard</a>
+    </div>
+  </section>
+ 
   {% endblock %}

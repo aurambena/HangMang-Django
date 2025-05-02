@@ -84,7 +84,7 @@ header ul {
       gap: 80px; } }
   @media (min-width: 768px) {
     header ul {
-      gap: 270px; } }
+      gap: 240px; } }
   @media (min-width: 1024px) {
     header ul {
       gap: 330px; } }
@@ -208,6 +208,21 @@ h1.h1login {
   text-align: center;
   margin-bottom: 50px; }
 
+.leader {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  margin-right: 20px;
+  gap: 20px; }
+
+.title-stats {
+  text-align: center; }
+
+.leaderboard-stats {
+  border-style: ridge;
+  border-color: #76271b;
+  padding: 10px;
+  margin-bottom: 10px; }
+
 * {
   padding: 0;
   margin: 0;
@@ -249,5 +264,37 @@ h1.h1login {
 .mode {
   text-align: left;
   margin-top: 25px; }
+
+.main-buttons {
+  display: grid;
+  grid-template-columns: 30% 30% 40%;
+  text-align: center;
+  margin-right: 20px;
+  margin-top: 100px; }
+  @media (min-width: 375px) {
+    .main-buttons {
+      font-size: 10px; } }
+  @media (min-width: 768px) {
+    .main-buttons {
+      font-size: 30px; } }
+  @media (min-width: 1024px) {
+    .main-buttons {
+      font-size: 50px; } }
+  @media (min-width: 1200px) {
+    .main-buttons {
+      font-size: 50px; } }
+  .main-buttons a {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: black;
+    text-decoration: none;
+    border-radius: 20px;
+    padding: 30px;
+    background-color: #6EC207; }
+  .main-buttons .leaderboard {
+    background-color: #76271b;
+    color: #ffcd71;
+    text-align: center; }
 
 /*# sourceMappingURL=style.css.map */
